@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>API_KEY</key>
+    <string>AIzaSyCfvOlEy_r5Hw3mfFFMlG0m7mWr_3BLMPY</string>
+    <key>GCM_SENDER_ID</key>
+    <string>1027734128402</string>
+	<key>CLIENT_ID</key>
+	<string>1027734128402-vrjo3iv8l47k8rvkbmmpkg2h24rf5att.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1027734128402-vrjo3iv8l47k8rvkbmmpkg2h24rf5att</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>site.tunckankilic.tunctexting</string>
+    <key>PROJECT_ID</key>
+    <string>tunctexting-1a304</string>
+    <key>STORAGE_BUCKET</key>
+    <string>tunctexting-1a304.appspot.com</string>
+    <key>IS_ADS_ENABLED</key>
+    <false></false>
+    <key>IS_ANALYTICS_ENABLED</key>
+    <false></false>
+    <key>IS_APPINVITE_ENABLED</key>
+    <true></true>
+    <key>IS_GCM_ENABLED</key>
+    <true></true>
+    <key>IS_SIGNIN_ENABLED</key>
+    <true></true>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:1027734128402:ios:1a9f593e05516eaa9d95cb</string>
+</dict>
+</plist>

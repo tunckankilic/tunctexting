@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1027734128402",
+    "project_id": "tunctexting-1a304",
+    "storage_bucket": "tunctexting-1a304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027734128402:android:679879f3ce79f2399d95cb",
+        "android_client_info": {
+          "package_name": "site.tunckankilic.tunctexting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLrTZp_elM5d9kC4KSmpTg9UKuo7vf0Kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
