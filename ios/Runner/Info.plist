@@ -72,5 +72,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bu uygulama, kullanıcı deneyimini geliştirmek için Bluetooth özelliklerini kullanmak istiyor.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Bu uygulama, kullanıcı girdilerini kolaylaştırmak için konuşma tanıma özelliğini kullanmak istiyor.</string>
 </dict>
 </plist>
