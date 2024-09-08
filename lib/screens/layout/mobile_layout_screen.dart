@@ -1,19 +1,17 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tunctexting/common/utils/colors.dart';
 import 'package:tunctexting/common/utils/utils.dart';
 import 'package:tunctexting/screens/auth/controller/auth_controller.dart';
-import 'package:tunctexting/screens/screens.dart';
-import 'package:tunctexting/utils/utils.dart';
-import 'package:tunctexting/widgets/widgets.dart';
+import 'package:tunctexting/screens/contacts/pages/contacts.dart';
+import 'package:tunctexting/screens/contacts/pages/contacts_list.dart';
+import 'package:tunctexting/screens/group/screens/create_group_screen.dart';
+import 'package:tunctexting/screens/status/pages/confirm_status.dart';
+import 'package:tunctexting/screens/status/pages/status_contacts_screen.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
-  static const routeName = "/mobilelayout";
+  static const routeName = "/layout";
   const MobileLayoutScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,12 +24,19 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
   @override
   void initState() {
     super.initState();
-    tabBarController = TabController(length: 1, vsync: this);
+    tabBarController = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.resumed:
         ref.read(authControllerProvider).setUserState(true);
@@ -43,50 +48,78 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
         break;
       case AppLifecycleState.hidden:
     }
-    super.didChangeAppLifecycleState(state);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
-        backgroundColor: textColor,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: backgroundColor,
+          backgroundColor: appBarColor,
           centerTitle: false,
           title: const Text(
-            'Tunc Texting',
+            'TuncTexting',
             style: TextStyle(
               fontSize: 20,
-              color: textColor,
+              color: Colors.grey,
               fontWeight: FontWeight.bold,
             ),
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.search, color: Colors.grey[900]!),
+              icon: const Icon(Icons.search, color: Colors.grey),
               onPressed: () {},
             ),
-            IconButton(
-              icon: Icon(Icons.logout_outlined, color: Colors.grey[900]!),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut().then(
-                      (value) => Navigator.of(context)
-                          .pushReplacementNamed(LandingScreen.routeName),
-                    );
-              },
+            PopupMenuButton(
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.grey,
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: const Text(
+                    'Create Group',
+                  ),
+                  onTap: () => Future(
+                    () => Navigator.pushNamed(
+                        context, CreateGroupScreen.routeName),
+                  ),
+                )
+              ],
             ),
           ],
+          bottom: TabBar(
+            controller: tabBarController,
+            indicatorColor: tabColor,
+            indicatorWeight: 4,
+            labelColor: tabColor,
+            unselectedLabelColor: Colors.grey,
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            tabs: const [
+              Tab(
+                text: 'CHATS',
+              ),
+              Tab(
+                text: 'STATUS',
+              ),
+              Tab(
+                text: 'CALLS',
+              ),
+            ],
+          ),
         ),
-        body: ContactsList(),
+        body: TabBarView(
+          controller: tabBarController,
+          children: const [
+            ContactsList(),
+            StatusContactsScreen(),
+            Text('Calls')
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             if (tabBarController.index == 0) {
@@ -102,10 +135,10 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               }
             }
           },
-          backgroundColor: textColor,
+          backgroundColor: tabColor,
           child: const Icon(
             Icons.comment,
-            color: backgroundColor,
+            color: Colors.white,
           ),
         ),
       ),

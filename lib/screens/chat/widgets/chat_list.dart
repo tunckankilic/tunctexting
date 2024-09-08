@@ -75,7 +75,7 @@ class _ChatListState extends ConsumerState<ChatList> {
             }
             if (messageData.senderId ==
                 FirebaseAuth.instance.currentUser!.uid) {
-              return MyMessageCard(
+              return MyMessageCardWithTranslation(
                 isSeen: messageData.isSeen,
                 repliedText: messageData.repliedMessage,
                 repliedMessageType: messageData.repliedMessageType,
@@ -90,7 +90,7 @@ class _ChatListState extends ConsumerState<ChatList> {
                 type: messageData.type,
               );
             }
-            return SenderMessageCard(
+            return SenderMessageCardWithTranslation(
               repliedText: messageData.repliedMessage,
               repliedMessageType: messageData.repliedMessageType,
               username: messageData.repliedTo,

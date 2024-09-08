@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
@@ -8,6 +10,7 @@ class GroupC {
   final String groupPic;
   final String lastMessage;
   final List<String> membersUid;
+  final DateTime timeSent;
   GroupC({
     required this.senderId,
     required this.name,
@@ -15,6 +18,7 @@ class GroupC {
     required this.groupPic,
     required this.lastMessage,
     required this.membersUid,
+    required this.timeSent,
   });
 
   GroupC copyWith({
@@ -24,6 +28,7 @@ class GroupC {
     String? groupPic,
     String? lastMessage,
     List<String>? membersUid,
+    DateTime? timeSent,
   }) {
     return GroupC(
       senderId: senderId ?? this.senderId,
@@ -32,6 +37,7 @@ class GroupC {
       groupPic: groupPic ?? this.groupPic,
       lastMessage: lastMessage ?? this.lastMessage,
       membersUid: membersUid ?? this.membersUid,
+      timeSent: timeSent ?? this.timeSent,
     );
   }
 
@@ -43,20 +49,8 @@ class GroupC {
       'groupPic': groupPic,
       'lastMessage': lastMessage,
       'membersUid': membersUid,
+      'timeSent': timeSent.millisecondsSinceEpoch,
     };
-  }
-
-  factory GroupC.fromMap(Map<String, dynamic> map) {
-    return GroupC(
-      senderId: map['senderId'] ?? "",
-      name: map['name'] ?? "",
-      groupId: map['groupId'] ?? "",
-      groupPic: map['groupPic'] ?? "",
-      lastMessage: map['lastMessage'] ?? "",
-      membersUid: List<String>.from(
-        (map['membersUid'] as List<String>),
-      ),
-    );
   }
 
   @override
@@ -68,7 +62,8 @@ class GroupC {
         other.groupId == groupId &&
         other.groupPic == groupPic &&
         other.lastMessage == lastMessage &&
-        listEquals(other.membersUid, membersUid);
+        listEquals(other.membersUid, membersUid) &&
+        other.timeSent == timeSent;
   }
 
   @override
@@ -78,6 +73,7 @@ class GroupC {
         groupId.hashCode ^
         groupPic.hashCode ^
         lastMessage.hashCode ^
-        membersUid.hashCode;
+        membersUid.hashCode ^
+        timeSent.hashCode;
   }
 }
